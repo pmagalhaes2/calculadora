@@ -1,6 +1,9 @@
 feather.replace();
 
-let operation = "", currentValue = "", oldValue = "", result = "";
+let operation = "",
+  currentValue = "",
+  oldValue = "",
+  result = "";
 let output = document.querySelector(".output");
 let operators = document.querySelectorAll(".operator");
 let numbers = document.querySelectorAll(".number");
@@ -49,17 +52,19 @@ function cancelEntry() {
 
 function calc(operatorClicked) {
   if (operatorClicked === "=") {
-    if (operation === "+") {
-      result = parseFloat(oldValue) + parseFloat(currentValue);
-    }
-    if (operation === "-") {
-      result = parseFloat(oldValue) - parseFloat(currentValue);
-    }
-    if (operation === "/") {
-      result = parseFloat(oldValue) / parseFloat(currentValue);
-    }
-    if (operation === "*") {
-      result = parseFloat(oldValue) * parseFloat(currentValue);
+    switch (operation) {
+      case "+":
+        result = parseFloat(oldValue) + parseFloat(currentValue);
+        break;
+      case "-":
+         result = parseFloat(oldValue) - parseFloat(currentValue);
+        break;
+      case "/":
+        result = parseFloat(oldValue) / parseFloat(currentValue);
+        break;
+      case "*":
+        result = parseFloat(oldValue) * parseFloat(currentValue);
+        break;
     }
     displayOutput(result);
   } else {
