@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="./assets/styles/style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <div class="calculadora">
+        <div class="output"></div>
+        <div class="buttons">
+          <span></span><span></span>
+          <button class="operator" onclick="cancelEntry()">
+            <i data-feather="delete"></i>
+          </button>
+          <button class="operator" onclick="clearOutput()">C</button>
+          <button class="number" onclick="numberClick(value)" value="7">
+            7
+          </button>
+          <button class="number" onclick="numberClick(value)" value="8">
+            8
+          </button>
+          <button class="number" onclick="numberClick(value)" value="9">
+            9
+          </button>
+          <button class="operator" onclick="operatorClick(value)" value="+">
+            +
+          </button>
+          <button class="number" onclick="numberClick(value)" value="4">
+            4
+          </button>
+          <button class="number" onclick="numberClick(value)" value="5">
+            5
+          </button>
+          <button class="number" onclick="numberClick(value)" value="6">
+            6
+          </button>
+          <button class="operator" onclick="operatorClick(value)" value="-">
+            –
+          </button>
+          <button class="number" onclick="numberClick(value)" value="1">
+            1
+          </button>
+          <button class="number" onclick="numberClick(value)" value="2">
+            2
+          </button>
+          <button class="number" onclick="numberClick(value)" value="3">
+            3
+          </button>
+          <button class="operator" onclick="operatorClick(value)" value="*">
+            ×
+          </button>
+          <button class="number" onclick="numberClick(value)" value="0">
+            0
+          </button>
+          <button onclick="numberClick(value)" value=".">.</button>
+          <button class="operator" onclick="operatorClick(value)" value="/">
+            ÷
+          </button>
+          <button
+            class="operator green"
+            onclick="operatorClick(value)"
+            value="="
+          >
+            =
+          </button>
+        </div>
+      </div>
+    </main>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="./assets/scripts/script.js"></script>
+  </body>
+</html>
