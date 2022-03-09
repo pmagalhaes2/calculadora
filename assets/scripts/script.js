@@ -13,8 +13,7 @@ function numberClick(value) {
 function displayOutput(numberClicked) {
   removeZero();
   if (result) {
-    output.innerHTML = result, 
-    operation = "", currentValue = "", oldValue = "", result = "";
+    output.innerHTML = result, operation = "", currentValue = "", oldValue = "", result = "";
   } else {
     currentValue = numberClicked;
     output.innerHTML += currentValue;
@@ -51,16 +50,16 @@ function calc(operatorClicked) {
   if (operatorClicked === "=") {
     switch (operation) {
       case "+":
-        result = parseFloat(oldValue) + parseFloat(currentValue);
+        result = Number((oldValue * 10 ) + Number(currentValue *10))/10;
         break;
       case "-":
-        result = parseFloat(oldValue) - parseFloat(currentValue);
+        result = Number((oldValue * 10 ) - Number(currentValue *10))/10;
         break;
       case "/":
-        result = parseFloat(oldValue) / parseFloat(currentValue);
+        result = Number((oldValue * 10 ) / Number(currentValue *10));
         break;
       case "*":
-        result = parseFloat(oldValue) * parseFloat(currentValue);
+        result = Number((oldValue * 10 ) * Number(currentValue *10))/100;
         break;
     }
     displayOutput(result);
