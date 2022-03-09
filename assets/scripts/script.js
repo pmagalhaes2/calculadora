@@ -43,6 +43,7 @@ function cancelEntry() {
   if (output.textContent) {
     let entry = output.innerHTML;
     output.innerHTML = entry.substring(0, entry.length - 1);
+    currentValue = output.innerHTML;
   }
 }
 
