@@ -1,9 +1,6 @@
 feather.replace();
 
-let operation = "",
-  currentValue = "",
-  oldValue = "",
-  result = "";
+let operation = "", currentValue = "", oldValue = "", result = "";
 let output = document.querySelector(".output");
 let operators = document.querySelectorAll(".operator");
 let numbers = document.querySelectorAll(".number");
@@ -16,8 +13,8 @@ function numberClick(value) {
 function displayOutput(numberClicked) {
   removeZero();
   if (result) {
-    output.innerHTML = result;
-    (operation = ""), (currentValue = ""), (oldValue = ""), (result = "");
+    output.innerHTML = result, 
+    operation = "", currentValue = "", oldValue = "", result = "";
   } else {
     currentValue = numberClicked;
     output.innerHTML += currentValue;
@@ -57,7 +54,7 @@ function calc(operatorClicked) {
         result = parseFloat(oldValue) + parseFloat(currentValue);
         break;
       case "-":
-         result = parseFloat(oldValue) - parseFloat(currentValue);
+        result = parseFloat(oldValue) - parseFloat(currentValue);
         break;
       case "/":
         result = parseFloat(oldValue) / parseFloat(currentValue);
