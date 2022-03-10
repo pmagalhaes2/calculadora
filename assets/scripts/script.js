@@ -13,8 +13,10 @@ function numberClick(value) {
 function displayOutput(numberClicked) {
   removeZero();
   if (result || result === 0) {
-    output.innerHTML = result, operation = "", currentValue = "", oldValue = "", result = "";
+    output.innerHTML = result,
+    operation = "", currentValue = "", oldValue = "", result = "";
   } else {
+    if (currentValue.includes(".") && numberClicked === ".") return;
     currentValue = numberClicked;
     output.innerHTML += currentValue;
     currentValue = output.innerHTML;
@@ -50,16 +52,16 @@ function calc(operatorClicked) {
   if (operatorClicked === "=") {
     switch (operation) {
       case "+":
-        result = Number((oldValue * 10 ) + Number(currentValue * 10))/10;
+        result = Number((oldValue * 10) + Number(currentValue * 10))/10;
         break;
       case "-":
-        result = Number((oldValue * 10 ) - Number(currentValue * 10))/10;
+        result = Number((oldValue * 10) - Number(currentValue * 10))/10;
         break;
       case "/":
-        result = Number((oldValue * 10 ) / Number(currentValue * 10));
+        result = Number((oldValue * 10) / Number(currentValue * 10));
         break;
       case "*":
-        result = Number((oldValue * 10 ) * Number(currentValue * 10))/100;
+        result = Number((oldValue * 10) * Number(currentValue * 10))/100;
         break;
     }
     displayOutput(result);
