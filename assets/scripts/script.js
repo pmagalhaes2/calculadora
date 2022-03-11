@@ -2,8 +2,6 @@ feather.replace();
 
 let operation = "", currentValue = "", oldValue = "", result = "";
 let output = document.querySelector(".output");
-let operators = document.querySelectorAll(".operator");
-let numbers = document.querySelectorAll(".number");
 
 function numberClick(value) {
   let numberClicked = value;
@@ -13,8 +11,8 @@ function numberClick(value) {
 function displayOutput(numberClicked) {
   removeZero();
   if (result || result === 0) {
-    output.innerHTML = result,
-    operation = "", currentValue = "", oldValue = "", result = "";
+    output.innerHTML = result;
+    operation = "", currentValue = result.toString(), oldValue = "", result = "";
   } else {
     if (currentValue.includes(".") && numberClicked === ".") return;
     currentValue = numberClicked;
@@ -38,6 +36,11 @@ function operatorClick(value) {
 
 function clearOutput() {
   output.innerHTML = "";
+}
+
+function clearVariables(){
+  clearOutput();
+  operation = "", currentValue = "", oldValue = "", result = "";
 }
 
 function cancelEntry() {
