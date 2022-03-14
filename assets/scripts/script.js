@@ -9,24 +9,21 @@ function numberClick(value) {
 }
 
 function displayOutput(numberClicked) {
-  removeZero();
   if (result || result === 0) {
     output.innerHTML = result;
     operation = "", currentValue = result.toString(), oldValue = "", result = "";
   } else {
     if (currentValue.includes(".") && numberClicked === ".") return;
+    if (currentValue === "0" && numberClicked != ".") return removeZero(numberClicked);
     currentValue = numberClicked;
     output.innerHTML += currentValue;
     currentValue = output.innerHTML;
   }
 }
 
-function removeZero() {
-  let value = output.innerHTML;
-  if (value == "0") {
-    value = "";
-    output.innerHTML = value;
-  }
+function removeZero(numberClicked) {
+  output.innerHTML = numberClicked;
+  currentValue = output.innerHTML;
 }
 
 function operatorClick(value) {
@@ -38,7 +35,7 @@ function clearOutput() {
   output.innerHTML = "";
 }
 
-function clearVariables(){
+function clearVariables() {
   clearOutput();
   operation = "", currentValue = "", oldValue = "", result = "";
 }
