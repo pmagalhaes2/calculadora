@@ -11,13 +11,13 @@ function numberClick(value) {
 function displayOutput(numberClicked) {
   if (result || result === 0) {
     output.innerHTML = result;
-    operation = "", currentValue = result.toString(), oldValue = "", result = "";
+    operation = "", currentValue = "", oldValue = result.toString(), result = "";
   } else {
-    if (currentValue.includes(".") && numberClicked === ".") return;
-    if (currentValue === "0" && numberClicked != ".") return removeZero(numberClicked);
-    currentValue = numberClicked;
-    output.innerHTML += currentValue;
-    currentValue = output.innerHTML;
+      if (currentValue.includes(".") && numberClicked === ".") return;
+      if (currentValue === "0" && numberClicked != ".") return removeZero(numberClicked);
+      currentValue = numberClicked;
+      output.innerHTML += currentValue;
+      currentValue = output.innerHTML;
   }
 }
 
@@ -27,8 +27,13 @@ function removeZero(numberClicked) {
 }
 
 function operatorClick(value) {
-  let operatorClicked = value;
-  calc(operatorClicked);
+  if (value != "=") {
+    calc(operation);
+    operation = value;
+  } else {
+    let operatorClicked = value;
+    calc(operatorClicked);
+  }
 }
 
 function clearOutput() {
@@ -49,7 +54,7 @@ function cancelEntry() {
 }
 
 function calc(operatorClicked) {
-  if (operatorClicked === "=") {
+  if (operatorClicked === "=" || operation) {
     switch (operation) {
       case "+":
         result = Number((oldValue * 10) + Number(currentValue * 10))/10;
@@ -58,7 +63,8 @@ function calc(operatorClicked) {
         result = Number((oldValue * 10) - Number(currentValue * 10))/10;
         break;
       case "/":
-        result = Number((oldValue * 10) / Number(currentValue * 10));
+        result = Number((oldValue * 10) / Number(currentValue * 10)).toString();
+        result.includes(".") ? result = Number(result).toFixed(8) : Number(result);
         break;
       case "*":
         result = Number((oldValue * 10) * Number(currentValue * 10))/100;
@@ -67,6 +73,7 @@ function calc(operatorClicked) {
     displayOutput(result);
   } else {
     oldValue = currentValue;
+    currentValue = "";
     clearOutput();
     operation = operatorClicked;
   }
