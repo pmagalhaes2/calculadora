@@ -4,6 +4,9 @@ let operation = "", currentValue = "", oldValue = "", result = "";
 let output = document.querySelector(".output");
 
 function numberClick(value) {
+  if ((result == "" && currentValue == "") || (operation != "" && currentValue == "")) {
+    clearOutput();
+  }
   let numberClicked = value;
   displayOutput(numberClicked);
 }
@@ -11,7 +14,7 @@ function numberClick(value) {
 function displayOutput(numberClicked) {
   if (result || result === 0) {
     output.innerHTML = result;
-    operation = "", currentValue = "", oldValue = result.toString(), result = "";
+    currentValue = "", oldValue = result.toString(), result = "";
   } else {
       if (currentValue.includes(".") && numberClicked === ".") return;
       if (currentValue === "0" && numberClicked != ".") return removeZero(numberClicked);
@@ -30,7 +33,6 @@ function operatorClick(value) {
   if (value != "=") {
     calc(operation);
     operation = value;
-    currentValue = "";
   } else {
     let operatorClicked = value;
     calc(operatorClicked);
@@ -55,7 +57,7 @@ function cancelEntry() {
 }
 
 function calc(operatorClicked) {
-  if (operatorClicked === "=" || operation) {
+  if (operatorClicked === "=" && currentValue != "" || operation && currentValue != "") {
     switch (operation) {
       case "+":
         result = Number((oldValue * 10) + Number(currentValue * 10))/10;
@@ -65,7 +67,11 @@ function calc(operatorClicked) {
         break;
       case "/":
         result = Number((oldValue * 10) / Number(currentValue * 10)).toString();
-        result.includes(".") ? result = Number(result).toFixed(8) : Number(result);
+        if(result.length >= 8) {
+          result.includes(".") ? result = Number(result).toFixed(8) : result = Number(result);
+        } else {
+          result = Number(result);
+        }
         break;
       case "*":
         result = Number((oldValue * 10) * Number(currentValue * 10))/100;
@@ -73,9 +79,9 @@ function calc(operatorClicked) {
     }
     displayOutput(result);
   } else {
+      if (currentValue === "") return;
     oldValue = currentValue;
     currentValue = "";
-    clearOutput();
     operation = operatorClicked;
   }
 }
