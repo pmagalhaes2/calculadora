@@ -11,7 +11,7 @@ function numberClick(value) {
 function displayOutput(numberClicked) {
   if (result || result === 0) {
     output.innerHTML = result;
-    operation = "", currentValue = "", oldValue = result.toString(), result = "";
+    oldValue = result.toString(), result = "";
   } else {
       if (currentValue.includes(".") && numberClicked === ".") return;
       if (currentValue === "0" && numberClicked != ".") return removeZero(numberClicked);
@@ -30,7 +30,6 @@ function operatorClick(value) {
   if (value != "=") {
     calc(operation);
     operation = value;
-    currentValue = "";
   } else {
     let operatorClicked = value;
     calc(operatorClicked);
