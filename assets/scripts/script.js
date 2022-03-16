@@ -1,6 +1,6 @@
 feather.replace();
 
-let operation = "", currentValue = "", oldValue = "", result = "";
+let operation = "", currentValue = "", oldValue = "", result = "", tempResult = "";
 let output = document.querySelector(".output");
 
 function numberClick(value) {
@@ -14,7 +14,7 @@ function numberClick(value) {
 function displayOutput(numberClicked) {
   if (result || result === 0) {
     output.innerHTML = result;
-    currentValue = "", oldValue = result.toString(), result = "";
+    currentValue = "", oldValue = result.toString(), result = "", tempResult = "";
   } else {
       if (currentValue.includes(".") && numberClicked === ".") return;
       if (currentValue === "0" && numberClicked != ".") return removeZero(numberClicked);
@@ -45,7 +45,7 @@ function clearOutput() {
 
 function clearVariables() {
   clearOutput();
-  operation = "", currentValue = "", oldValue = "", result = "";
+  operation = "", currentValue = "", oldValue = "", result = "", tempResult = "";
 }
 
 function cancelEntry() {
@@ -56,27 +56,29 @@ function cancelEntry() {
   }
 }
 
+function checkResult(tempResult) {
+  tempResult.length > 10 ? result = Number(tempResult).toExponential(5) : result = Number(tempResult);
+}
+
 function calc(operatorClicked) {
   if (operatorClicked === "=" && currentValue != "" || operation && currentValue != "") {
     switch (operation) {
       case "+":
-        result = Number((oldValue * 10) + Number(currentValue * 10))/10;
+        tempResult = Number(((oldValue * 10) + Number(currentValue * 10))/10).toString();
         break;
       case "-":
-        result = Number((oldValue * 10) - Number(currentValue * 10))/10;
+        tempResult = Number(((oldValue * 10) - Number(currentValue * 10))/10).toString();
         break;
       case "/":
-        result = Number((oldValue * 10) / Number(currentValue * 10)).toString();
-        if(result.length >= 8) {
-          result.includes(".") ? result = Number(result).toFixed(8) : result = Number(result);
-        } else {
-          result = Number(result);
-        }
+        tempResult = Number((oldValue * 10) / Number(currentValue * 10)).toString();
+        tempResult.length >= 8 && tempResult.includes(".") ? tempResult = Number(tempResult).toFixed(8) : tempResult = Number(tempResult);
+        tempResult = tempResult.toString();
         break;
       case "*":
-        result = Number((oldValue * 10) * Number(currentValue * 10))/100;
+        tempResult = Number(((oldValue * 10) * Number(currentValue * 10))/100).toString();
         break;
     }
+    checkResult(tempResult);
     displayOutput(result);
   } else {
       if (currentValue === "") return;
