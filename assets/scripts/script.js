@@ -19,7 +19,7 @@ function displayOutput(numberClicked) {
       if (currentValue.includes(".") && numberClicked === ".") return;
       if (currentValue === "0" && numberClicked != ".") return removeZero(numberClicked);
       currentValue = numberClicked;
-      output.innerHTML += currentValue;
+      if(output.textContent.length < 9) output.innerHTML += currentValue;
       currentValue = output.innerHTML;
   }
 }
