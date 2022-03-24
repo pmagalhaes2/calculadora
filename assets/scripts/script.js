@@ -70,6 +70,10 @@ function calc(operatorClicked) {
         tempResult = Number(((oldValue * 10) - Number(currentValue * 10))/10).toString();
         break;
       case "/":
+        if (currentValue === "0") {
+          oldValue= "0";
+          return output.innerHTML = "Error";
+        }
         tempResult = Number((oldValue * 10) / Number(currentValue * 10)).toString();
         tempResult.length >= 8 && tempResult.includes(".") ? tempResult = Number(tempResult).toFixed(8) : tempResult = Number(tempResult);
         tempResult = tempResult.toString();
